@@ -1,0 +1,77 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Cancha;
+use Illuminate\Database\Seeder;
+
+class CanchaSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $canchas = [
+            [
+                'id' => 1,
+                'nombre' => 'Cancha de Fútbol',
+                'deporte' => 'Futbol',
+                'superficie' => 'Pasto sintético',
+                'precioHora' => 25000,
+                'imagen' => '/canchafutbol1.jpg',
+                'imagenBanner' => '/futbolbanner.avif',
+                'descripcion' => 'Ideal para partidos de fútbol 7 entre amigos, con arcos reglamentarios y buena iluminación.',
+                'horariosDisponibles' => ['10:00', '11:00', '12:00', '17:00', '18:00'],
+                'horarioAtencion' => 'Lunes a domingo de 10:00 a 22:00 hrs',
+                'direccion' => 'Av. Alemania 0450, Temuco',
+                'prestaciones' => ['Estacionamiento', 'Camarines'],
+            ],
+            [
+                'id' => 2,
+                'nombre' => 'Cancha de Voleibol',
+                'deporte' => 'Voleibol',
+                'superficie' => 'Pvc vinilico',
+                'precioHora' => 12000,
+                'imagen' => '/canchavoleibol2.jpg',
+                'imagenBanner' => '/voleibolbanner.avif',
+                'descripcion' => 'Cancha techada con piso de PVC vinílico, pensada para partidos recreativos o de entrenamiento en equipo.',
+                'horariosDisponibles' => ['10:00', '11:00', '12:00', '17:00', '18:00', '19:00', '20:00'],
+                'horarioAtencion' => 'Lunes a domingo de 10:00 a 22:00 hrs',
+                'direccion' => 'Av. Alemania 0450, Temuco',
+                'prestaciones' => ['Estacionamiento', 'Camarines'],
+            ],
+            [
+                'id' => 3,
+                'nombre' => 'Cancha de Pádel',
+                'deporte' => 'Pádel',
+                'superficie' => 'Pasto sintético',
+                'precioHora' => 15000,
+                'imagen' => '/canchapadel3.jpg',
+                'imagenBanner' => '/padelbanner.avif',
+                'descripcion' => 'Cancha de pádel con paredes reglamentarias, ideal para partidos de dobles entre amigos o familia.',
+                'horariosDisponibles' => ['10:00', '11:00', '12:00', '17:00', '18:00', '19:00'],
+                'horarioAtencion' => 'Lunes a domingo de 10:00 a 22:00 hrs',
+                'direccion' => 'Av. Alemania 0450, Temuco',
+                'prestaciones' => ['Estacionamiento', 'Camarines', 'Cafetería'],
+            ],
+            [
+                'id' => 4,
+                'nombre' => 'Cancha de Basquetbol',
+                'deporte' => 'Basquetbol',
+                'superficie' => 'Madera',
+                'precioHora' => 16000,
+                'imagen' => '/canchabasquetbol4.jpg',
+                'imagenBanner' => '/basquetbolbanner.jpg',
+                'descripcion' => 'Cancha techada con piso de madera y doble arco, perfecta para partidos de 3x3 o 5x5.',
+                'horariosDisponibles' => ['10:00', '11:00', '12:00', '17:00', '18:00', '19:00'],
+                'horarioAtencion' => 'Lunes a domingo de 10:00 a 22:00 hrs',
+                'direccion' => 'Av. Alemania 0450, Temuco',
+                'prestaciones' => ['Estacionamiento', 'Camarines'],
+            ],
+        ];
+
+        foreach ($canchas as $cancha) {
+            $id = $cancha['id'];
+            unset($cancha['id']);
+            Cancha::updateOrCreate(['id' => $id], $cancha);
+        }
+    }
+}
