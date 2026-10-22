@@ -22,4 +22,14 @@ class CanchaController extends Controller
         $cancha = Cancha::findOrFail($id);
         return response()->json($cancha, 200);
     }
+
+    public function store (Request $request){
+        $datos = $request->validate([
+            'nombre' => 'required | string| max:255',
+            'deporte' => 'required | string| max:255',
+            'superficie' => 'required | string| max:255',
+        ]);
+        $cancha = Cancha::create($datos);
+        return response()->json($cancha,201);
+    }
 }
