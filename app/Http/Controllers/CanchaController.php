@@ -9,14 +9,11 @@ class CanchaController extends Controller
 {
     public function index()
     {
-        // Obtiene todas las canchas de la base de datos
         $canchas = Cancha::all();
         
-        // Retorna un JSON con código de estado HTTP 200 (OK)
         return response()->json($canchas, 200);
     }
 
-    // Opcional: Para obtener solo una cancha por su ID (ej: para la vista de detalle)
     public function show($id)
     {
         $cancha = Cancha::findOrFail($id);
@@ -28,8 +25,28 @@ class CanchaController extends Controller
             'nombre' => 'required | string| max:255',
             'deporte' => 'required | string| max:255',
             'superficie' => 'required | string| max:255',
+            'precioHora' => ['required', 'integer', 'min:0'],
+            'imagen' => ['required', 'string', 'max:255'],
+            'imagenBanner' => ['required', 'string', 'max:255'],
+            'descripcion' => ['required', 'string'],
+            'horariosDisponibles' => ['required', 'array', 'min:1'],
+            'horariosDisponibles.*' => ['required', 'date_format:H:i'],
+            'horarioAtencion' => ['required', 'string', 'max:255'],
+            'direccion' => ['required', 'string', 'max:255'],
+            'prestaciones' => ['required', 'array'],
+            'prestaciones.*' => ['required', 'string', 'max:255'],
         ]);
         $cancha = Cancha::create($datos);
         return response()->json($cancha,201);
+    }
+    
+    public function remove($id){
+        $cancha = Cancha::findOrFail($id);
+        $cancha->delete();
+
+        return response()->json([
+            'sucess' => true,
+            'data' => 'cancha eliminada correctamente'
+        ],200);
     }
 }
